@@ -1,8 +1,7 @@
 const overlay = document.getElementById("overlay");
 const chose_player = document.getElementById("chose_player");
 const cancer_button = document.getElementById("cancer_button");
-let store_data = []
-
+let store_data = [];
 
 chose_player.addEventListener("click", function () {
   overlay.classList.remove("hidden");
@@ -16,15 +15,29 @@ cancer_button.addEventListener("click", function () {
 
 const loadPlayersData = async () => {
   try {
-    const res = await fetch("../data/data.json");
-    let data = await res.json();
 
-    data.players.forEach(element => {
-      store_data.push(element);
-    });
+    let response = await fetch("../data/data.json");
+    let players = await response.json();
 
-    addData(store_data);
+    players = players.players;
 
+    if (!localStorage.getItem("players")) {
+      localStorage.setItem("players", JSON.stringify(players));
+    }
+    let allPlayers = JSON.parse(localStorage.getItem("players"));
+
+    console.log(allPlayers)
+
+
+
+
+    displayData(allPlayers); 
+    addPlayers(allPlayers);
+
+
+    
+
+       
   } catch (err) {
     console.error("Error loading data", err);
   }
@@ -33,15 +46,46 @@ const loadPlayersData = async () => {
 loadPlayersData();
 
 
-console.log(store_data)
+function addPlayers(createPlayer){
+
+  console.log(createPlayer);
+
+  const newPlayer = {
+    name: "Youssef En-Nesyri",
+    photo: "https://cdn.sofifa.net/players/235/410/25_120.png",
+    position: "ST",
+    nationality: "Morocco",
+    flag: "https://cdn.sofifa.net/flags/ma.png",
+    club: "Fenerbahçe",
+    logo: "https://cdn.sofifa.net/meta/team/88/120.png",
+    rating: 83,
+    pace: 82,
+    shooting: 82,
+    passing: 63,
+    dribbling: 77,
+    defending: 36,
+    physical: 80,
+  };
+
+  let newAddedPlayer =  createPlayer.push(newPlayer);
+
+  console.log(newAddedPlayer);
+  
+  localStorage.setItem("players", JSON.stringify(newAddedPlayer));
 
 
 
 
-const addData = async (store_data) => {
 
-  const displayDataCard = store_data.map((elements) => {
+}
 
+
+
+
+const displayData = async (allPlayers) => {
+
+
+  const displayDataCard = allPlayers.map((elements) => {
       return `
            <div
             draggable="true"
@@ -121,22 +165,18 @@ const addData = async (store_data) => {
             </div>
             </div>
         `;
-    }).join(" ");
-    
+    })
+    .join(" ");
 
   players_cards.innerHTML = displayDataCard;
   const cards = document.querySelectorAll(".card");
   drag_drop(cards);
 };
 
-
-
-
 const players_area = document.querySelectorAll(".player_area");
 const players_cards = document.getElementById("players_cards");
 
 const drag_drop = (cards) => {
-    
   for (let i = 0; i < cards.length; i++) {
     cards[i].addEventListener("dragstart", (e) => {
       let selected = e.currentTarget;
@@ -159,34 +199,14 @@ const add_player = document.getElementById("add_player");
 const add_overlay = document.getElementById("add_overlay");
 const cancer_add_button = document.getElementById("cancer_add_button");
 
-
-add_player.addEventListener("click", function(){
-   add_overlay.classList.add("flex");
-   add_overlay.classList.remove("hidden");
+add_player.addEventListener("click", function () {
+  add_overlay.classList.add("flex");
+  add_overlay.classList.remove("hidden");
 });
 
-cancer_add_button.addEventListener("click", function(){
-    add_overlay.classList.add("hidden");
-    add_overlay.classList.remove("flex");
+cancer_add_button.addEventListener("click", function () {
+  add_overlay.classList.add("hidden");
+  add_overlay.classList.remove("flex");
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
