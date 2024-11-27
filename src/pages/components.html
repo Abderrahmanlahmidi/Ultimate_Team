@@ -1,62 +1,79 @@
- <!-- start card -->
- <div draggable="true" class="fut-player-card">
-    <div class="player-card-top">
-        <div class="player-master-info">
-            <div class="player-rating">
-                <span>97</span>
-            </div>
-            <div class="player-position">
-                <span>RW</span>
-            </div>
-            <div class="player-nation">
-                <img src="https://selimdoyranli.com/cdn/fut-player-card/img/argentina.svg" alt="Argentina" draggable="false"/>
-            </div>
-            <div class="player-club">
-                <img src="https://selimdoyranli.com/cdn/fut-player-card/img/barcelona.svg" alt="Barcelona" draggable="false"/>
-            </div>
-        </div>
-        <div class="player-picture">
-            <img src="https://cdn.sofifa.net/players/158/023/25_120.png" alt="Messi" draggable="false"/>
-        </div>
+<!-- start card -->
+<div
+draggable="true"
+class="relative w-[95px] h-auto bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
+style="background-image: url('../assets/img/placeholder-card.webp')"
+>
+<!-- Card Top -->
+<div class="relative flex text-[#e9cc74] px-1">
+  <!-- Master Info -->
+  <div class="absolute flex flex-col text-center uppercase leading-5 font-light pt-2">
+    <!-- Player Rating -->
+    <div class="text-sm">97</div>
+    <!-- Player Position -->
+    <div class="text-xs">RW</div>
+    <!-- Player Nation -->
+
+    <!-- Player Club -->
+    <div class="block w-4 h-6">
+      <img
+        src="https://selimdoyranli.com/cdn/fut-player-card/img/barcelona.svg"
+        alt="Barcelona"
+        class="w-full h-full object-contain"
+      />
     </div>
-    <div class="player-card-bottom">
-        <div class="player-info">
-            <!-- Player Name-->
-            <div class="player-name">
-                <span>MESSI</span>
-            </div>
-            <!-- Player Features-->
-            <div class="player-features">
-                <div class="player-features-col">
-                    <span>
-                        <div class="player-feature-value">97</div>
-                        <div class="player-feature-title">PAC</div>
-                    </span>
-                    <span>
-                        <div class="player-feature-value">95</div>
-                        <div class="player-feature-title">SHO</div>
-                    </span>
-                    <span>
-                        <div class="player-feature-value">94</div>
-                        <div class="player-feature-title">PAS</div>
-                    </span>
-                </div>
-                <div class="player-features-col">
-                    <span>
-                        <div class="player-feature-value">99</div>
-                        <div class="player-feature-title">DRI</div>
-                    </span>
-                    <span>
-                        <div class="player-feature-value">35</div>
-                        <div class="player-feature-title">DEF</div>
-                    </span>
-                    <span>
-                        <div class="player-feature-value">68</div>
-                        <div class="player-feature-title">PHY</div>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
+  </div>
+  <!-- Player Picture -->
+  <div class="mx-auto w-[40px] h-[40px] overflow-hidden relative">
+    <img
+      src="https://cdn.sofifa.net/players/158/023/25_120.png"
+      alt="Messi"
+      class="w-full h-full object-contain relative -right-2"
+    />
+  </div>
 </div>
-<!-- end card  -->
+<!-- Card Bottom -->
+<div class="relative">
+  <!-- Player Info -->
+  <div class="block text-[#e9cc74] w-full mx-auto py-1 text-center">
+    <!-- Player Name -->
+    <div class="text-xs uppercase border-b border-[rgba(233,204,116,0.1)] pb-0.5 overflow-hidden">
+      <span class="block text-shadow">MESSI</span>
+    </div>
+    <!-- Player Features -->
+    <div class="mt-1 flex justify-center space-x-2">
+      <!-- Column 1 -->
+      <div class="space-y-0.5 border-r border-[rgba(233,204,116,0.1)] pr-1">
+        <span class="flex text-[10px] uppercase">
+          <span class="font-bold mr-0.5">97</span>
+          <span class="font-light">PAC</span>
+        </span>
+        <span class="flex text-[10px] uppercase">
+          <span class="font-bold mr-0.5">95</span>
+          <span class="font-light">SHO</span>
+        </span>
+        <span class="flex text-[10px] uppercase">
+          <span class="font-bold mr-0.5">94</span>
+          <span class="font-light">PAS</span>
+        </span>
+      </div>
+      <!-- Column 2 -->
+      <div class="space-y-0.5">
+        <span class="flex text-[10px] uppercase">
+          <span class="font-bold mr-0.5">99</span>
+          <span class="font-light">DRI</span>
+        </span>
+        <span class="flex text-[10px] uppercase">
+          <span class="font-bold mr-0.5">35</span>
+          <span class="font-light">DEF</span>
+        </span>
+        <span class="flex text-[10px] uppercase">
+          <span class="font-bold mr-0.5">68</span>
+          <span class="font-light">PHY</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- end card -->
