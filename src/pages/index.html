@@ -13,15 +13,7 @@
            <p class="text-white text-[12px]" >Build Custom Tactics & Formations</p>
         </div>
 
-        <!-- overlay -->
-        <div id="overlay" class="cursor-pointer fixed gap-5 inset-0 bg-black bg-opacity-50  flex   items-center justify-center  z-50">
-           <div class="p-8 rounded-lg bg-black max-w-[1000px] w-full mx-4">
-            <div id="players_cards" class=" grid justify-center grid-cols-7 mb-6 gap-5 " >
-              
-            </div>
-            <button id="cancer_button" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 ">cancer</button>
-           </div>
-         </div>
+
 
 
         <!-- settings -->
@@ -70,7 +62,48 @@
                 </div>
                 <div class="flex flex-col gap-3" >
                    <h4 class="text-[20px] font-[600]" >Players</h4>
-                   <button id="chose_player" type="button" class="focus:outline-none text-white  bg-orange   font-medium rounded text-sm px-5 py-2.5 me-2 mb-2 ">Choose your player</button>  
+                   <button id="chose_player" type="button" class="focus:outline-none text-white  bg-orange   font-medium rounded text-sm px-5 py-2.5 me-2 mb-2 ">choose your player</button>  
+                </div>
+                <div class="flex flex-col gap-3" >
+                   <h4 class="text-[20px] font-[600]" >Create Your Player</h4>
+                   <button id="add_player" type="button" class="focus:outline-none text-white  bg-orange   font-medium rounded text-sm px-5 py-2.5 me-2 mb-2 ">add your player</button>  
+                </div>
+
+                <!-- overlays -->
+                 <!-- overlay_1 -->
+                <div id="overlay" class="cursor-pointer fixed gap-5 inset-0 bg-black bg-opacity-50  hidden   items-center justify-center  z-50">
+                 <div class="p-8 rounded-lg bg-black max-w-[1000px] w-full mx-4">
+                  <div id="players_cards" class=" grid justify-center grid-cols-7 mb-6 gap-5 " >
+                    
+                  </div>
+                  <button id="cancer_button" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 ">cancer</button>
+               </div>
+            </div>
+            <!-- overlay_2 -->
+            <div id="add_overlay" class="hidden cursor-pointer fixed inset-0 bg-black bg-opacity-50    items-center justify-center  z-50">
+               <div class="bg-black p-8 rounded-lg max-w-lg w-full mx-4 flex flex-col gap-5">
+                  
+                  <form id="form" action="" class="grid grid-cols-2 gap-5" >
+                     <input placeholder="enter name" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
+                     <input placeholder="enter photo url" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
+                     <input placeholder="enter position" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
+                     <input placeholder="enter nationality" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
+                     <input placeholder="enter flag" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
+                     <input placeholder="enter club" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
+                     <input placeholder="enter logo" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
+                     <input placeholder="enter rating" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
+                     <input placeholder="enter pace" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
+                     <input placeholder="enter shooting" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
+                     <input placeholder="enter passing" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
+                     <input placeholder="enter dribbling" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
+                     <input placeholder="enter defending" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
+                     <input placeholder="enter physical" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
+                     <!-- buttons -->
+                     <input value="Add Player" class="cursor-pointer py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 " title="add player" type="button">
+                     <button id="cancer_add_button" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 ">cancer</button>
+                  </form>
+                  
+               </div>
                 </div>
                </div>
             </div>
