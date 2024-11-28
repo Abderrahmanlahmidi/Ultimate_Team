@@ -14,7 +14,40 @@ cancer_button.addEventListener("click", function () {
 });
 
 
-const loadPlayersData = async () => {
+const formData = {};
+  
+document.getElementById('add_form').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const inputs = this.querySelectorAll('input');
+
+  let isFormValid = true;
+
+  inputs.forEach(input => {
+      const value = input.value.trim();
+
+      if (!value) { 
+          alert(`${input.placeholder} is required`);
+          isFormValid = false;
+          return;
+      }
+        formData[input.name] = input.value;
+      
+
+
+  });
+
+  if (isFormValid) {
+      alert('Form submitted successfully!');
+  }
+
+  loadPlayersData(formData)
+
+
+});
+
+
+const loadPlayersData = async (formData = null) => {
   try {
 
     let response = await fetch("../data/data.json");
@@ -28,7 +61,7 @@ const loadPlayersData = async () => {
 
     let allPlayers = JSON.parse(localStorage.getItem("players"));
 
-    displayData(allPlayers); 
+    displayData(allPlayers, formData); 
 
 
   } catch (err) {
@@ -39,12 +72,13 @@ const loadPlayersData = async () => {
 loadPlayersData();
 
 
+const displayData = async (allPlayers, formData) => {
 
+  if (formData != null) {
+    allPlayers.push(formData);
+  }
 
-
-
-
-const displayData = async (allPlayers) => {
+   
 
 
 

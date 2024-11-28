@@ -83,26 +83,62 @@
             <div id="add_overlay" class="hidden cursor-pointer fixed inset-0 bg-black bg-opacity-50    items-center justify-center  z-50">
                <div class="bg-black p-8 rounded-lg max-w-lg w-full mx-4 flex flex-col gap-5">
                   
-                  <form id="form" action="" class="grid grid-cols-2 gap-5" >
-                     <input placeholder="enter name" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
-                     <input placeholder="enter photo url" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
-                     <input placeholder="enter position" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
-                     <input placeholder="enter nationality" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
-                     <input placeholder="enter flag" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
-                     <input placeholder="enter club" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
-                     <input placeholder="enter logo" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="text">
-                     <input placeholder="enter rating" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
-                     <input placeholder="enter pace" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
-                     <input placeholder="enter shooting" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
-                     <input placeholder="enter passing" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
-                     <input placeholder="enter dribbling" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
-                     <input placeholder="enter defending" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
-                     <input placeholder="enter physical" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" type="number">
+                  <form method="get" id="add_form" action=""  >
+                     <div class="grid grid-cols-2 gap-5">
+                        <div class="flex flex-col gap-1" >
+                           <input id="name" name="name" type="text" placeholder="enter name" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="position" name="position" type="text" placeholder="enter position" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="nationality" name="nationality" type="text" placeholder="enter nationality" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="club" name="club" type="text" placeholder="enter club" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="rating" name="rating" type="number" placeholder="enter rating" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="pace" name="pace" type="number" placeholder="enter pace" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="shooting" name="shooting" type="number" placeholder="enter shooting" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="passing" name="passing" type="number" placeholder="enter passing" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="dribbling" name="dribbling" type="number" placeholder="enter dribbling" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="defending" name="defending" type="number" placeholder="enter defending" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="physical" name="physical" type="number" placeholder="enter physical" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="physical" name="physical" type="number" placeholder="enter physical" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                     </div>
+                     
+                     <div class="flex flex-col gap-5 my-5" >
+                        <div class="flex flex-col gap-1" >
+                           <input id="physical" name="physical" type="number" placeholder="enter physical" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="flag" name="flag" type="file" placeholder="enter flag" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="logo" name="logo" type="file" placeholder="enter logo" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                     </div>
                      <!-- buttons -->
-                     <input value="Add Player" class="cursor-pointer py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 " title="add player" type="button">
+                     <input type="submit"  class="cursor-pointer py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 " title="add player">
+                    
                      <button id="cancer_add_button" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 ">cancer</button>
                   </form>
-                  
                </div>
                 </div>
                </div>
