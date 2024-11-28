@@ -1,7 +1,7 @@
 const overlay = document.getElementById("overlay");
 const chose_player = document.getElementById("chose_player");
 const cancer_button = document.getElementById("cancer_button");
-let store_data = [];
+
 
 chose_player.addEventListener("click", function () {
   overlay.classList.remove("hidden");
@@ -12,6 +12,7 @@ cancer_button.addEventListener("click", function () {
   overlay.classList.remove("flex");
   overlay.classList.add("hidden");
 });
+
 
 const loadPlayersData = async () => {
   try {
@@ -24,20 +25,12 @@ const loadPlayersData = async () => {
     if (!localStorage.getItem("players")) {
       localStorage.setItem("players", JSON.stringify(players));
     }
+
     let allPlayers = JSON.parse(localStorage.getItem("players"));
 
-    console.log(allPlayers)
-
-
-
-
     displayData(allPlayers); 
-    addPlayers(allPlayers);
 
 
-    
-
-       
   } catch (err) {
     console.error("Error loading data", err);
   }
@@ -46,43 +39,13 @@ const loadPlayersData = async () => {
 loadPlayersData();
 
 
-function addPlayers(createPlayer){
 
-  console.log(createPlayer);
-
-  const newPlayer = {
-    name: "Youssef En-Nesyri",
-    photo: "https://cdn.sofifa.net/players/235/410/25_120.png",
-    position: "ST",
-    nationality: "Morocco",
-    flag: "https://cdn.sofifa.net/flags/ma.png",
-    club: "Fenerbahçe",
-    logo: "https://cdn.sofifa.net/meta/team/88/120.png",
-    rating: 83,
-    pace: 82,
-    shooting: 82,
-    passing: 63,
-    dribbling: 77,
-    defending: 36,
-    physical: 80,
-  };
-
-  let newAddedPlayer =  createPlayer.push(newPlayer);
-
-  console.log(newAddedPlayer);
-  
-  localStorage.setItem("players", JSON.stringify(newAddedPlayer));
-
-
-
-
-
-}
 
 
 
 
 const displayData = async (allPlayers) => {
+
 
 
   const displayDataCard = allPlayers.map((elements) => {
@@ -194,6 +157,7 @@ const drag_drop = (cards) => {
     });
   }
 };
+
 
 const add_player = document.getElementById("add_player");
 const add_overlay = document.getElementById("add_overlay");
