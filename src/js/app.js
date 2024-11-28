@@ -75,14 +75,11 @@ loadPlayersData();
 const displayData = async (allPlayers, formData) => {
 
   if (formData != null) {
-    allPlayers.push(formData);
+    allPlayers.unshift(formData);
   }
-
-   
-
-
-
-  const displayDataCard = allPlayers.map((elements) => {
+  
+  
+const displayDataCard = allPlayers.map((elements) => {
       return `
            <div
             draggable="true"
