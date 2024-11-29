@@ -20,29 +20,51 @@ document.getElementById('add_form').addEventListener('submit', function (event) 
   event.preventDefault();
 
   const inputs = this.querySelectorAll('input');
-
   let isFormValid = true;
+  const formData = {}; 
 
+  
   inputs.forEach(input => {
       const value = input.value.trim();
-
+      
+     
       if (!value) { 
-          alert(`${input.placeholder} is required`);
+          input.classList.add("border-[#]")
           isFormValid = false;
           return;
       }
-        formData[input.name] = input.value;
 
-});
+      
+      if (input.type === 'number') {
+          const numberValue = parseFloat(value);
+          if (isNaN(numberValue) || numberValue < 0 || numberValue > 100) {
+              alert(`${input.placeholder} must be a valid number between 0 and 100`);
+              isFormValid = false;
+              return;
+          }
+      }
 
+      if (input.type === 'text') {
+         
+          if (!/^[a-zA-Z\s]*$/.test(value)) {
+              alert(`${input.placeholder} must only contain letters`);
+              isFormValid = false;
+              return;
+          }
+      }
+      
+      formData[input.name] = input.value;
+  });
+ 
   if (isFormValid) {
       alert('Form submitted successfully!');
+      loadPlayersData(formData);
   }
-
-  loadPlayersData(formData)
-
-
 });
+
+
+
+
 
 
 const loadPlayersData = async (formData = null) => {
@@ -53,12 +75,16 @@ const loadPlayersData = async (formData = null) => {
 
     players = players.players;
 
+    console.log(players);
+
     if (!localStorage.getItem("players")) {
       localStorage.setItem("players", JSON.stringify(players));
     }
 
     let allPlayers = JSON.parse(localStorage.getItem("players"));
 
+    localStorage.clear()
+    
     displayData(allPlayers, formData); 
 
 
@@ -71,123 +97,114 @@ loadPlayersData();
 
 
 const displayData = async (allPlayers, formData) => {
-
   if (formData != null) {
     allPlayers.unshift(formData);
   }
-  
 
-const displayDataCard = allPlayers.map((elements) => {
-
+  const displayDataCard = allPlayers
+    .map((elements) => {
       return `
-           <div
-            draggable="true"
-            class="card relative w-[95px] h-auto bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
-            style="background-image: url('../assets/img/placeholder-card.webp')"
-            >
-            <!-- Card Top -->
-            <div class="card relative flex text-[#e9cc74] px-1">
+        <div
+          draggable="true"
+          class="card relative w-[95px] h-auto bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
+          style="background-image: url('../assets/img/placeholder-card.webp')"
+        >
+          <!-- Card Top -->
+          <div class=" relative flex text-[#e9cc74] px-1">
             <!-- Master Info -->
             <div class="absolute flex flex-col text-center uppercase leading-5 font-light pt-2">
-                <!-- Player Rating -->
-                <div class="text-sm">97</div>
-                <!-- Player Position -->
-                <div class="text-xs">RW</div>
-                <!-- Player Nation -->
-
-                <!-- Player Club -->
-                <div class="block w-4 h-6">
+              <div class="text-sm">${elements.rating}</div>
+              <div class="text-xs">RW</div>
+              <div class="block w-4 h-6">
                 <img
-                    src="${elements.logo}"
-                    alt="Barcelona"
-                    class="w-full h-full object-contain"
+                  src="${elements.logo}"
+                  alt="Logo"
+                  class="w-full h-full object-contain"
                 />
-                </div>
+              </div>
             </div>
-            <!-- Player Picture -->
             <div class="mx-auto w-[40px] h-[40px] overflow-hidden relative">
-                <img
+              <img
                 src="${elements.photo}"
-                alt="Messi"
+                alt="Player"
                 class="w-full h-full object-contain relative -right-2"
-                />
+              />
             </div>
-            </div>
-            <!-- Card Bottom -->
-            <div class="relative">
-            <!-- Player Info -->
+          </div>
+          <!-- Card Bottom -->
+          <div class="relative">
             <div class="block text-[#e9cc74] w-full mx-auto py-1 text-center">
-                <!-- Player Name -->
-                <div class="text-xs uppercase border-b border-[rgba(233,204,116,0.1)] pb-0.5 overflow-hidden">
+              <div class="text-xs uppercase border-b border-[rgba(233,204,116,0.1)] pb-0.5 overflow-hidden">
                 <span class="block text-shadow">${elements.name}</span>
-                </div>
-                <!-- Player Features -->
-                <div class="mt-1 flex justify-center space-x-2">
-                <!-- Column 1 -->
+              </div>
+              <div class="mt-1 flex justify-center space-x-2">
                 <div class="space-y-0.5 border-r border-[rgba(233,204,116,0.1)] pr-1">
-                    <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.pace}</span>
-                    <span class="font-light">PAC</span>
-                    </span>
-                    <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.shooting}</span>
-                    <span class="font-light">SHO</span>
-                    </span>
-                    <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.passing}</span>
-                    <span class="font-light">PAS</span>
-                    </span>
+                  <span class="flex text-[10px] uppercase">
+                    <span class="font-bold mr-0.5">${elements.pace}</span> PAC
+                  </span>
+                  <span class="flex text-[10px] uppercase">
+                    <span class="font-bold mr-0.5">${elements.shooting}</span> SHO
+                  </span>
+                  <span class="flex text-[10px] uppercase">
+                    <span class="font-bold mr-0.5">${elements.passing}</span> PAS
+                  </span>
                 </div>
-                <!-- Column 2 -->
                 <div class="space-y-0.5">
-                    <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.dribbling}</span>
-                    <span class="font-light">DRI</span>
-                    </span>
-                    <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.defending}</span>
-                    <span class="font-light">DEF</span>
-                    </span>
-                    <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.physical}</span>
-                    <span class="font-light">PHY</span>
-                    </span>
+                  <span class="flex text-[10px] uppercase">
+                    <span class="font-bold mr-0.5">${elements.dribbling}</span> DRI
+                  </span>
+                  <span class="flex text-[10px] uppercase">
+                    <span class="font-bold mr-0.5">${elements.defending}</span> DEF
+                  </span>
+                  <span class="flex text-[10px] uppercase">
+                    <span class="font-bold mr-0.5">${elements.physical}</span> PHY
+                  </span>
                 </div>
-                </div>
+              </div>
             </div>
-            </div>
-            </div>
-        `;
-    }).join(" ");
-    
+          </div>
+        </div>`;
+    })
+    .join(" ");
 
   players_cards.innerHTML = displayDataCard;
   const cards = document.querySelectorAll(".card");
+  console.log(cards);
   drag_drop(cards);
 };
 
 
-const players_area = document.querySelectorAll(".player_area");
+const players_area = document.querySelectorAll(".player_area"); 
 const players_cards = document.getElementById("players_cards");
 
 const drag_drop = (cards) => {
   
-for (let i = 0; i < cards.length; i++) {
-   cards[i].addEventListener("dragstart", (e) => {
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].addEventListener("dragstart", (e) => {
       let selected = e.target;
 
+      
       players_cards.addEventListener("dragover", function(e) {
         e.preventDefault();
-        overlay.classList.add("hidden");
+        if (overlay) {
+          overlay.classList.add("hidden");
+        }
       });
 
       players_area[i].addEventListener("drop", function (e) {
+        e.preventDefault();
         players_area[i].appendChild(selected);
         selected = null;
       });
     });
   }
 };
+
+
+drag_drop(players_cards.children); 
+
+
+
 
 
 const add_player = document.getElementById("add_player");
