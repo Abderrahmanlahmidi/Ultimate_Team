@@ -29,7 +29,7 @@ document.getElementById('add_form').addEventListener('submit', function (event) 
       
      
       if (!value) { 
-          input.classList.add("border-[#]")
+          alert(`${input.placeholder} must be a valid number between 0 and 100`);
           isFormValid = false;
           return;
       }
@@ -38,6 +38,7 @@ document.getElementById('add_form').addEventListener('submit', function (event) 
       if (input.type === 'number') {
           const numberValue = parseFloat(value);
           if (isNaN(numberValue) || numberValue < 0 || numberValue > 100) {
+
               alert(`${input.placeholder} must be a valid number between 0 and 100`);
               isFormValid = false;
               return;
