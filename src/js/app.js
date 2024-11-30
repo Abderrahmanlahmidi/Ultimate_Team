@@ -128,7 +128,6 @@ const displayData = async (allPlayers, newData) => {
 
       return `
         <div
-          draggable="true"
           class="card relative w-[150px] h-auto bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
           style="background-image: url('../assets/img/placeholder-card.webp')"
         >
@@ -192,46 +191,41 @@ const displayData = async (allPlayers, newData) => {
 
   players_cards.innerHTML = displayDataCard;
   const cards = document.querySelectorAll(".card");
-  drag_drop(cards);
+  select_player(cards);
 };
 
 
 
-// const players_area = document.querySelectorAll(".player_area"); 
-const players_cards = document.getElementById("players_cards");
-const area = document.getElementById("area");
+const players_areas = document.querySelectorAll(".player_area");
 
-const drag_drop = (cards) => {
 
-  console.log(cards[0])
-  console.log(players_cards)
-  console.log(area)
-  console.log("-----after--------");
+const select_player = (cards) => {
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      players_areas.forEach((area) => {
+        area.addEventListener("click", () => {
+          // Create a wrapper for proper scaling
+          const cardContent = card.querySelector(".player-content"); // Assuming this class wraps the content
+          if (cardContent) {
+            // Clear previous content
+            area.innerHTML = "";
+            const wrapper = document.createElement("div");
+            wrapper.classList.add("player-wrapper"); // Add a wrapper class for styling
+            wrapper.innerHTML = cardContent.outerHTML; // Insert the player's content into the wrapper
+            area.appendChild(wrapper);
+          } else {
+            // Fallback: insert the full card if no .player-content is found
+            area.innerHTML = card.outerHTML;
+          }
 
-  cards[0].addEventListener("dragstart", function(event){
-    let selected = event.target;
-    console.log(selected);
-    
-    
-    players_cards.addEventListener("dragover", function(event){
-      event.preventDefault();
-      overlay.classList.add("hidden");
-      
+          // Hide the overlay
+          overlay.classList.add("hidden");
+          overlay.classList.remove("flex");
+        });
+      });
     });
-    
-    area.addEventListener("drop", function(event){
-      area.appendChild(selected);
-      selected = null;
-    })
-  })
-  
+  });
 };
-
-
-drag_drop(cards)
-
-
-
 
 
 
