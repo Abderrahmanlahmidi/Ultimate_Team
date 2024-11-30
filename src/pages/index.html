@@ -7,140 +7,148 @@
   <title>Ultimate Team</title>
 </head>
 <body>
-    <main class="main_background w-full  flex flex-col px-[120px] py-[50px]">
-        <div class="py-[20px]" >
-           <h5 class="text-white font-[700] text-[20px]" >EA FC 25 Tactics & Formations</h5>
-           <p class="text-white text-[12px]" >Build Custom Tactics & Formations</p>
+    <main class="main_background w-full flex flex-col px-6 md:px-[120px] py-[50px]">
+        <div class="py-[20px]">
+           <h5 class="text-white font-[700] text-[20px]">EA FC 25 Tactics & Formations</h5>
+           <p class="text-white text-[12px]">Build Custom Tactics & Formations</p>
         </div>
         <!-- settings -->
-        <div class="w-full grid justify-center  grid-cols-6 " >
-            <div class="col-span-4 relative text-white flex flex-col justify-center items-center" >
-               
+        <div class="w-full grid grid-cols-1 lg:grid-cols-6 gap-5 justify-center">
+            <div class="col-span-1 lg:col-span-4 relative text-white flex flex-col justify-center items-center">
                <!-- players -->
-               <div class="z-40 px-[30px] row-[20px] grid absolute w-full h-full  p-[40px]" >
-                  <div class="grid board-players z-40 px-[30px] gap-5 absolute w-full h-full  p-[40px]" >
-                     <div class="flex  w-full gap-[90px]  justify-center" >
-                        <div class="flex justify-center items-center player_area w-[95px] h-auto player_area" ></div>
-                        <div class="flex justify-center items-center player_area w-[95px] h-auto player_area" ></div>
-                        <div class="flex justify-center items-center player_area w-[95px] h-auto player_area" ></div>
+               <div class="z-40 px-6 md:px-[30px] row-[20px] grid absolute w-full h-full p-[20px] md:p-[40px]">
+                  <div class="grid board-players z-40 gap-5 absolute w-full h-full">
+                     <div class="flex flex-wrap w-full gap-5 md:gap-[90px] justify-center">
+                        <div id="area" class="flex justify-center items-center  max-md:w-[55px] w-[110px] h-auto player_area"></div>
+                        <div class="flex justify-center items-center player_area  max-md:w-[55px] w-[110px] h-auto player_area"></div>
+                        <div class="flex justify-center items-center player_area  max-md:w-[55px] w-[110px] h-auto player_area"></div>
                      </div>
-                     <div class="flex  w-full gap-[90px] justify-center" >
-                        <div class="flex justify-center items-center player_area w-[95px] h-auto player_area" ></div>
-                        <div class="flex justify-center items-center player_area w-[95px] h-auto player_area" ></div>
-                        <div class="flex justify-center items-center player_area w-[95px] h-auto player_area" ></div>
+                     <div class="flex flex-wrap w-full gap-5 md:gap-[90px] justify-center">
+                        <div class="flex justify-center items-center player_area  max-md:w-[55px] w-[110px] h-auto player_area"></div>
+                        <div class="flex justify-center items-center player_area  max-md:w-[55px] w-[110px] h-auto player_area"></div>
+                        <div class="flex justify-center items-center player_area  max-md:w-[55px] w-[110px] h-auto player_area"></div>
                      </div>
-                     <div class="flex w-full gap-[90px]  justify-center" >
-                        <div class="flex player_area w-[95px] h-auto player_area"></div>
-                        <div class="flex player_area w-[95px] h-auto player_area"></div>
-                        <div class="flex player_area w-[95px] h-auto player_area"></div>
-                        <div class="flex player_area w-[95px] h-auto player_area"></div>
+                     <div class="flex flex-wrap w-full gap-5 md:gap-[90px] justify-center">
+                        <div class="flex player_area  max-md:w-[55px] w-[110px] h-auto player_area"></div>
+                        <div class="flex player_area  max-md:w-[55px] w-[110px] h-auto player_area"></div>
+                        <div class="flex player_area  max-md:w-[55px] w-[110px] h-auto player_area"></div>
+                        <div class="flex player_area  max-md:w-[55px] w-[110px] h-auto player_area"></div>
                      </div>
-                     <div class="flex w-full justify-center" >
-                        <div class="flex player_area w-[95px] h-auto player_area"></div>
+                     <div class="flex w-full justify-center">
+                        <div class="flex player_area  max-md:w-[55px] w-[110px] h-auto player_area"></div>
                      </div>
                   </div>
-   
                </div>
-
-               <img src="../assets/img/stadium.svg">
+               <img src="../assets/img/stadium.svg" class="w-full h-auto mt-4">
             </div>
-            <div class="col-span-2 text-white p-[20px] flex flex-col w-full">
-               <div class="bg-black p-6 rounded-lg gap-3 flex flex-col">
 
-                <div class="flex flex-col gap-3" >
-                   <h4 class="text-[20px] font-[600]" >Formation</h4>
-                   <select name="" id="" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange" >
+            <!-- Settings / Sidebar -->
+            <div class="col-span-1 lg:col-span-2 text-white p-[20px] flex flex-col w-full">
+               <div class="bg-black p-6 rounded-lg gap-3 flex flex-col">
+                <!-- Formation -->
+                <div class="flex flex-col gap-3">
+                   <h4 class="text-[20px] font-[600]">Formation</h4>
+                   <select name="" id="" class="rounded border border-[#4c4c4c] bg-black p-2 focus:ring-orange focus:border-orange">
                     <option selected>2-4-4</option>
-                    <option>2-4-4</option>
-                    <option>2-4-4</option>
-                    <option>2-4-4</option>
+                    <option>3-5-2</option>
+                    <option>4-3-3</option>
                    </select>
                 </div>
-                <div class="flex flex-col gap-3" >
-                   <h4 class="text-[20px] font-[600]" >Players</h4>
-                   <button id="chose_player" type="button" class="focus:outline-none text-white  bg-orange   font-medium rounded text-sm px-5 py-2.5 me-2 mb-2 ">choose your player</button>  
+                <!-- Players -->
+                <div class="flex flex-col gap-3">
+                   <h4 class="text-[20px] font-[600]">Players</h4>
+                   <button id="chose_player" type="button" class="focus:outline-none text-white bg-orange font-medium rounded text-sm px-5 py-2.5 me-2 mb-2">
+                     Choose your player
+                   </button>  
                 </div>
-                <div class="flex flex-col gap-3" >
-                   <h4 class="text-[20px] font-[600]" >Create Your Player</h4>
-                   <button id="add_player" type="button" class="focus:outline-none text-white  bg-orange   font-medium rounded text-sm px-5 py-2.5 me-2 mb-2 ">add your player</button>  
+                <!-- Create Player -->
+                <div class="flex flex-col gap-3">
+                   <h4 class="text-[20px] font-[600]">Create Your Player</h4>
+                   <button id="add_player" type="button" class="focus:outline-none text-white bg-orange font-medium rounded text-sm px-5 py-2.5 me-2 mb-2">
+                     Add your player
+                   </button>  
                 </div>
-
-                <!-- overlays -->
-                 <!-- overlay_1 -->
-                <div id="overlay" class="cursor-pointer fixed gap-5 inset-0 bg-black bg-opacity-50  hidden   items-center justify-center  z-50">
-                 <div class="p-8 rounded-lg bg-black max-w-[1000px] w-full mx-4">
-                  <div id="players_cards" class=" grid justify-center grid-cols-7 mb-6 gap-5 " >
-                    
-                  </div>
-                  <button id="cancer_button" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 ">cancer</button>
                </div>
             </div>
-            <!-- overlay_2 -->
-            <div id="add_overlay" class="hidden cursor-pointer fixed inset-0 bg-black bg-opacity-50    items-center justify-center  z-50">
-               <div class="bg-black p-8 rounded-lg max-w-lg w-full mx-4 flex flex-col gap-5">
-                  
-                  <form method="get" id="add_form" action=""  >
-                     <div class="grid grid-cols-2 gap-5">
-                        <div class="flex flex-col gap-1" >
-                           <input id="name" name="name" type="text" placeholder="enter name" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="position" name="position" type="text" placeholder="enter position" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="nationality" name="nationality" type="text" placeholder="enter nationality" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="club" name="club" type="text" placeholder="enter club" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="rating" name="rating" type="number" placeholder="enter rating" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="pace" name="pace" type="number" placeholder="enter pace" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="shooting" name="shooting" type="number" placeholder="enter shooting" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="passing" name="passing" type="number" placeholder="enter passing" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="dribbling" name="dribbling" type="number" placeholder="enter dribbling" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="defending" name="defending" type="number" placeholder="enter defending" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="physical" name="physical" type="number" placeholder="enter physical" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="physical" name="physical" type="number" placeholder="enter physical" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                     </div>
-                     
-                     <div class="flex flex-col gap-5 my-5" >
-                        <div class="flex flex-col gap-1" >
-                           <input id="physical" name="physical" type="number" placeholder="enter physical" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="photo" name="photo" type="text" placeholder="enter photo" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="logo" name="logo" type="text" placeholder="enter logo" class="rounded border border-[#4c4c4c]  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
-                     </div>
-                     <!-- buttons -->
-                     <input type="submit"  class="cursor-pointer py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 " title="add player">
-                    
-                     <button id="cancer_add_button" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 ">cancer</button>
-                  </form>
-               </div>
+        </div>
+
+        <!-- Player Selection Overlay -->
+        <div id="overlay" class="cursor-pointer fixed gap-5 inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="p-8 rounded-lg bg-black max-w-[1000px] w-full mx-4">
+                <div id="players_cards" class="grid justify-center grid-cols-7 mb-6 gap-5">
+                    <!-- Dynamically populated player cards go here -->
                 </div>
-               </div>
+                <button id="cancer_button" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700">
+                    Close
+                </button>
+            </div>
+        </div>
+
+        <!-- Add Player Overlay -->
+        <div id="add_overlay" class="hidden cursor-pointer fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
+            <div class="bg-black p-8 rounded-lg max-w-lg w-full mx-4 flex flex-col gap-5">
+                <form method="get" id="add_form" action="">
+                  <div class="grid grid-cols-2 gap-5">
+                     <!-- Form fields for adding a new player -->
+                        <div class="flex flex-col gap-1" >
+                           <input id="name" name="name" type="text" placeholder="enter name" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="position" name="position" type="text" placeholder="enter position" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="nationality" name="nationality" type="text" placeholder="enter nationality" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="club" name="club" type="text" placeholder="enter club" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="rating" name="rating" type="number" placeholder="enter rating" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="pace" name="pace" type="number" placeholder="enter pace" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="shooting" name="shooting" type="number" placeholder="enter shooting" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="passing" name="passing" type="number" placeholder="enter passing" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="dribbling" name="dribbling" type="number" placeholder="enter dribbling" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
+                           <input id="defending" name="defending" type="number" placeholder="enter defending" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                     </div>
+                    
+
+                 
+                    
+                    <!-- More form fields -->
+                    <div class="flex flex-col gap-5 my-5">
+                        <div class="flex flex-col gap-1" >
+                           <input id="physical" name="physical" type="number" placeholder="enter physical" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <input id="photo" name="photo" type="text" placeholder="Enter photo URL" class="rounded border border-[#4c4c4c] text-white bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <input id="logo" name="logo" type="text" placeholder="Enter logo URL" class="rounded border border-[#4c4c4c] text-white bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                    </div>
+                    
+                    <!-- Submit and close buttons -->
+                    <div class="flex justify-between gap-2">
+                        <input type="submit" class="cursor-pointer py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700" value="Add Player">
+                        <button id="cancer_add_button" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
 </body>
-<script src="../js/app.js" ></script>
+<script src="../js/app.js"></script>
 </html>

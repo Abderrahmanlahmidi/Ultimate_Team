@@ -3,6 +3,7 @@ const chose_player = document.getElementById("chose_player");
 const cancer_button = document.getElementById("cancer_button");
 
 
+
 chose_player.addEventListener("click", function () {
   overlay.classList.remove("hidden");
   overlay.classList.add("flex");
@@ -15,60 +16,76 @@ cancer_button.addEventListener("click", function () {
 
 
 const formData = {};
-  
-document.getElementById('add_form').addEventListener('submit', function (event) {
+const newData = [];
+
+document.getElementById('add_form').addEventListener('submit', function(event) {
   event.preventDefault();
 
-  const inputs = this.querySelectorAll('input');
-  let isFormValid = true;
-  const formData = {}; 
+  let valid = true;
+  let errorMessage = '';
+
+
+  const fields = [
+      { id: 'name', errorMessage: 'Name is required.' },
+      { id: 'position', errorMessage: 'Position is required.' },
+      { id: 'nationality', errorMessage: 'Nationality is required.' },
+      { id: 'club', errorMessage: 'Club is required.' },
+      { id: 'photo', errorMessage: 'Photo URL is required.' },
+      { id: 'logo', errorMessage: 'Logo URL is required.' }
+  ];
+
+  const numberFields = [
+      { id: 'rating', errorMessage: 'Rating must be between 0 and 100 Or empty.' },
+      { id: 'pace', errorMessage: 'Pace must be between 0 and 100 Or empty.' },
+      { id: 'shooting', errorMessage: 'Shooting must be between 0 and 100 Or empty.' },
+      { id: 'passing', errorMessage: 'Passing must be between 0 and 100 Or empty.' },
+      { id: 'dribbling', errorMessage: 'Dribbling must be between 0 and 100 Or empty.' },
+      { id: 'defending', errorMessage: 'Defending must be between 0 and 100 Or empty.' },
+      { id: 'physical', errorMessage: 'Physical must be between 0 and 100 Or empty.' }
+  ];
+
+
+  fields.forEach(field => {
+      const input = document.getElementById(field.id);
+      if (!input.value.trim()) { 
+          valid = false;
+          errorMessage += `${field.errorMessage}\n`; 
+          input.classList.add('border-[#991b1b]');
+      } else {
+          input.classList.remove('border-[#991b1b]');
+          formData[field.id] = input.value.trim();
+      }
+  });
 
   
-  inputs.forEach(input => {
-      const value = input.value.trim();
-      
-     
-      if (!value) { 
-          alert(`${input.placeholder} must be a valid number between 0 and 100`);
-          isFormValid = false;
-          return;
+  numberFields.forEach(field => {
+      const input = document.getElementById(field.id);
+      const value = parseFloat(input.value);
+      if (isNaN(value) || value < 0 || value > 100) {
+          valid = false;
+          errorMessage += `${field.errorMessage}\n`;
+          input.classList.add('border-[#991b1b]');
+      } else {
+          input.classList.remove('border-[#991b1b]');
+          formData[field.id] = value;
       }
-
-      
-      if (input.type === 'number') {
-          const numberValue = parseFloat(value);
-          if (isNaN(numberValue) || numberValue < 0 || numberValue > 100) {
-
-              alert(`${input.placeholder} must be a valid number between 0 and 100`);
-              isFormValid = false;
-              return;
-          }
-      }
-
-      if (input.type === 'text') {
-         
-          if (!/^[a-zA-Z\s]*$/.test(value)) {
-              alert(`${input.placeholder} must only contain letters`);
-              isFormValid = false;
-              return;
-          }
-      }
-      
-      formData[input.name] = input.value;
   });
- 
-  if (isFormValid) {
-      alert('Form submitted successfully!');
-      loadPlayersData(formData);
+
+  if (!valid) {
+      alert(errorMessage);
+      return;
   }
+
+
+      newData.push(formData);
+      loadPlayersData(newData);
+
 });
 
 
 
 
-
-
-const loadPlayersData = async (formData = null) => {
+const loadPlayersData = async (newData) => {
   try {
 
     let response = await fetch("../data/data.json");
@@ -76,7 +93,6 @@ const loadPlayersData = async (formData = null) => {
 
     players = players.players;
 
-    console.log(players);
 
     if (!localStorage.getItem("players")) {
       localStorage.setItem("players", JSON.stringify(players));
@@ -84,30 +100,36 @@ const loadPlayersData = async (formData = null) => {
 
     let allPlayers = JSON.parse(localStorage.getItem("players"));
 
-    localStorage.clear()
     
-    displayData(allPlayers, formData); 
+    displayData(allPlayers, newData); 
 
 
   } catch (err) {
-    console.error("Error loading data", err);
+    console.error("Error loading data", err); 
   }
 };
 
-loadPlayersData();
+loadPlayersData(newData);
 
 
-const displayData = async (allPlayers, formData) => {
-  if (formData != null) {
-    allPlayers.unshift(formData);
+
+const displayData = async (allPlayers, newData) => {
+ 
+    
+  if (newData.length != null) {
+    for (let i = 0; i < newData.length; i++) {
+      allPlayers.push(newData[i]);
+    }
   }
 
+
   const displayDataCard = allPlayers
-    .map((elements) => {
+  .map((elements) => {
+
       return `
         <div
           draggable="true"
-          class="card relative w-[95px] h-auto bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
+          class="card relative w-[150px] h-auto bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
           style="background-image: url('../assets/img/placeholder-card.webp')"
         >
           <!-- Card Top -->
@@ -170,39 +192,44 @@ const displayData = async (allPlayers, formData) => {
 
   players_cards.innerHTML = displayDataCard;
   const cards = document.querySelectorAll(".card");
-  console.log(cards);
   drag_drop(cards);
 };
 
 
-const players_area = document.querySelectorAll(".player_area"); 
+
+// const players_area = document.querySelectorAll(".player_area"); 
 const players_cards = document.getElementById("players_cards");
+const area = document.getElementById("area");
 
 const drag_drop = (cards) => {
-  
-  for (let i = 0; i < cards.length; i++) {
-    cards[i].addEventListener("dragstart", (e) => {
-      let selected = e.target;
 
+  console.log(cards[0])
+  console.log(players_cards)
+  console.log(area)
+  console.log("-----after--------");
+
+  cards[0].addEventListener("dragstart", function(event){
+    let selected = event.target;
+    console.log(selected);
+    
+    
+    players_cards.addEventListener("dragover", function(event){
+      event.preventDefault();
+      overlay.classList.add("hidden");
       
-      players_cards.addEventListener("dragover", function(e) {
-        e.preventDefault();
-        if (overlay) {
-          overlay.classList.add("hidden");
-        }
-      });
-
-      players_area[i].addEventListener("drop", function (e) {
-        e.preventDefault();
-        players_area[i].appendChild(selected);
-        selected = null;
-      });
     });
-  }
+    
+    area.addEventListener("drop", function(event){
+      area.appendChild(selected);
+      selected = null;
+    })
+  })
+  
 };
 
 
-drag_drop(players_cards.children); 
+drag_drop(cards)
+
 
 
 
