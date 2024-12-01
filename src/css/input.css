@@ -12,21 +12,22 @@
 	background-size: cover;
 }
 
-.player_area{
+.zone{
   background-image: url("../assets/img/placeholder-card.webp");
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
 }
 
-.player_area:hover{
+.zone:hover{
 	filter: drop-shadow(0 -5px 7px rgba(184, 241, 210, 0.96)) drop-shadow(0 8px 5px rgba(199, 224, 247, 0.575));
 
 }
 
-.card {
-	width: 95px;
+.player {
+	width: 140px;
 	max-width: 100%;
+	height: auto;
 	background-size: cover;
 	background-position: center;
 	padding: 1.2rem 0;
@@ -34,11 +35,46 @@
   }
   
 
-.card:hover {
+.player:hover {
 
   transform: scale(1.05);
 		
 }
   
+#players_cards {
+	max-height: 320px; 
+	overflow-y: auto; 
+	position: relative; 
 
+}
+
+
+
+
+#players_cards {
+	max-height: 320px; 
+	overflow-y: auto;  
+	position: relative;
+	padding-right: 10px; 
+	scrollbar-width: thin; 
+	scrollbar-color: #fe3c00 #1f2937; 
+  }
+  
+
+  #players_cards::-webkit-scrollbar {
+	width: 10px;
+  }
+  
+  #players_cards::-webkit-scrollbar-thumb {
+	background-color: #fe3c00;
+	border-radius: 10px;
+	border: 2px solid #1f2937;
+  }
+  
+  #players_cards::-webkit-scrollbar-track {
+	background-color: #1f2937; 
+	border-radius: 10px;
+  }
+  
+  
 

@@ -19,23 +19,23 @@
                <div class="z-40 px-6 md:px-[30px] row-[20px] grid absolute w-full h-full p-[20px] md:p-[40px]">
                   <div class="grid board-players z-40 gap-5 absolute w-full h-full">
                      <div class="flex flex-wrap w-full gap-5 md:gap-[90px] justify-center">
-                        <div id="area" class="flex justify-center items-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] player_area"></div>
-                        <div class="flex justify-center items-center player_area max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] player_area"></div>
-                        <div class="flex justify-center items-center player_area max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] player_area"></div>
+                        <div data-zone="1" class="flex justify-center items-center zone max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="2" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="3" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
                      </div>
                      <div class="flex flex-wrap w-full gap-5 md:gap-[90px] justify-center">
-                        <div class="flex justify-center items-center player_area  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] player_area"></div>
-                        <div class="flex justify-center items-center player_area  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] player_area"></div>
-                        <div class="flex justify-center items-center player_area  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] player_area"></div>
+                        <div data-zone="4" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="5" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="6" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
                      </div>
                      <div class="flex flex-wrap w-full gap-5 md:gap-[90px] justify-center">
-                        <div class="flex player_area justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] player_area"></div>
-                        <div class="flex player_area justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] player_area"></div>
-                        <div class="flex player_area justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] player_area"></div>
-                        <div class="flex player_area justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] player_area"></div>
+                        <div data-zone="7" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="8" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="9" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="10" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
                      </div>
                      <div class="flex w-full justify-center">
-                        <div class="flex justify-center player_area  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] player_area"></div>
+                        <div data-zone="11" class="flex justify-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
                      </div>
                   </div>
                </div>
@@ -56,32 +56,27 @@
                 </div>
 
                 <div class="flex flex-col gap-3">
-                   <h4 class="text-[20px] font-[600]">Players</h4>
-                   <button id="chose_player" type="button" class="focus:outline-none text-white bg-orange font-medium rounded text-sm px-5 py-2.5 me-2 mb-2">
-                     Choose your player
-                   </button>  
-                </div>
-
-                <div class="flex flex-col gap-3">
                    <h4 class="text-[20px] font-[600]">Create Your Player</h4>
                    <button id="add_player" type="button" class="focus:outline-none text-white bg-orange font-medium rounded text-sm px-5 py-2.5 me-2 mb-2">
                      Add your player
                    </button>  
                 </div>
+
+                <div class="bg-black gap-4 flex flex-col w-full ">
+                  <h4 class="text-[20px] font-[600]">Create Your Theme</h4>
+                  <div id="players_cards" class="grid justify-center  grid-cols-3  gap-5">
+                    <!-- Player cards will be dynamically inserted here -->
+                  </div>
+
+                </div>
+                
                </div>
             </div>
         </div>
    
 
         <div id="overlay" class="cursor-pointer fixed gap-5 inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-            <div class="p-8 rounded-lg bg-black max-w-[1000px] w-full mx-4">
-                <div id="players_cards" class="grid justify-center grid-cols-7 mb-6 gap-5">
-                   
-                </div>
-                <button id="cancer_button" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700">
-                    Close
-                </button>
-            </div>
+            
         </div>
 
 
@@ -145,6 +140,7 @@
                 </form>
             </div>
         </div>
+        
     </main>
 </body>
 <script src="../js/app.js"></script>

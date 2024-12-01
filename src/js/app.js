@@ -1,26 +1,12 @@
 const overlay = document.getElementById("overlay");
-const chosePlayer = document.getElementById("chose_player");
-const cancelBtn = document.getElementById("cancer_button");
 const addPlayer = document.getElementById("add_player");
 const addOverlay = document.getElementById("add_overlay");
 const cancelAddBtn = document.getElementById("cancer_add_button");
-const playersAreas = document.querySelectorAll(".player_area");
 const playersCards = document.getElementById("players_cards");
+const zones = document.querySelectorAll(".zone");
 
 const formData = {};
 const newData = [];
-
-
-chosePlayer.addEventListener("click", () => {
-  overlay.classList.remove("hidden");
-  overlay.classList.add("flex");
-});
-
-
-cancelBtn.addEventListener("click", () => {
-  overlay.classList.add("hidden");
-  overlay.classList.remove("flex");
-});
 
 
 addPlayer.addEventListener("click", () => {
@@ -125,7 +111,9 @@ const displayData = (allPlayers, newData) => {
   const displayDataCard = allPlayers
     .map((player) => `
       <div
-        class="card relative w-[150px] h-[160px] bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
+        draggable="true"
+        data-position="${player.id}"
+        class="player relative w-[150px] h-[160px] bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
         style="background-image: url('../assets/img/placeholder-card.webp')"
       >
         <div class="relative flex text-[#e9cc74] px-1">
@@ -163,25 +151,40 @@ const displayData = (allPlayers, newData) => {
     .join("");
 
   playersCards.innerHTML = displayDataCard;
-  
-  const cards = document.querySelectorAll(".card");
-  selectPlayer(cards);
+
+  const playerElements = document.querySelectorAll(".player");
+  selectPlayer(playerElements);
 };
 
 
-const selectPlayer = (cards) => {
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      overlay.classList.add("hidden");
-      alert("You have selected the player, now put him in his designated place.")
-      playersAreas.forEach((area) => {
-        area.addEventListener("click", () => {
-          const cardContent = card.querySelector(".player-content");
-          area.innerHTML = cardContent ? cardContent.outerHTML : card.outerHTML;
-          overlay.classList.add("hidden");
-          overlay.classList.remove("flex");
-        });
-      });
+
+
+const selectPlayer = (players) => {
+
+  zones.forEach((zone) => {
+    zone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    zone.addEventListener("drop", (e) => {
+      const position = e.dataTransfer.getData("text/plain");
+      const zonePosition = zone.getAttribute("data-zone");
+
+     
+      if (zonePosition === position) {
+        const player = document.querySelector(`[data-position="${position}"]`);
+        zone.appendChild(player);
+      } else {
+        alert("This player doesn't belong here!");
+      }
+    });
+  });
+
+
+  players.forEach((player) => {
+    player.addEventListener("dragstart", (e) => {
+      const position = player.getAttribute("data-position");
+      e.dataTransfer.setData("text/plain", position);
     });
   });
 };
