@@ -84,7 +84,7 @@ document.getElementById("add_form").addEventListener("submit", (event) => {
 
 const loadPlayersData = async (newData) => {
   try {
-    let response = await fetch("../data/data.json");
+    let response = await fetch("/src/data/data.json");
     let players = await response.json();
     players = players.players;
 
@@ -114,7 +114,7 @@ const displayData = (allPlayers, newData) => {
         draggable="true"
         data-position="${player.id}"
         class="player relative w-[150px] h-[160px] bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
-        style="background-image: url('../assets/img/placeholder-card.webp')"
+        style="background-image: url('/src/assets/img/placeholder-card.webp')"
       >
         <div class="relative flex text-[#e9cc74] px-1">
           <div class="absolute flex flex-col text-center uppercase leading-5 font-light pt-2">
