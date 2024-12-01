@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 
-.main_background{
+.main_background{ 
 	background-image: 
 	  linear-gradient(rgb(0, 0, 0, 0.6), rgb(0, 0, 0, 0.6)), 
 	  url("../assets/img/background.webp");

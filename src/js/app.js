@@ -128,7 +128,7 @@ const displayData = async (allPlayers, newData) => {
 
       return `
         <div
-          class="card relative w-[150px] h-auto bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
+          class="card relative w-[150px] h-[160px] bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
           style="background-image: url('../assets/img/placeholder-card.webp')"
         >
           <!-- Card Top -->
@@ -198,27 +198,23 @@ const displayData = async (allPlayers, newData) => {
 
 const players_areas = document.querySelectorAll(".player_area");
 
-
 const select_player = (cards) => {
   cards.forEach((card) => {
     card.addEventListener("click", () => {
       players_areas.forEach((area) => {
         area.addEventListener("click", () => {
-          // Create a wrapper for proper scaling
-          const cardContent = card.querySelector(".player-content"); // Assuming this class wraps the content
+
+          const cardContent = card.querySelector(".player-content");
           if (cardContent) {
-            // Clear previous content
             area.innerHTML = "";
             const wrapper = document.createElement("div");
-            wrapper.classList.add("player-wrapper"); // Add a wrapper class for styling
-            wrapper.innerHTML = cardContent.outerHTML; // Insert the player's content into the wrapper
+            wrapper.classList.add("player-wrapper"); 
+            wrapper.innerHTML = cardContent.outerHTML;
             area.appendChild(wrapper);
           } else {
-            // Fallback: insert the full card if no .player-content is found
             area.innerHTML = card.outerHTML;
           }
 
-          // Hide the overlay
           overlay.classList.add("hidden");
           overlay.classList.remove("flex");
         });
