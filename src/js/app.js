@@ -1,111 +1,115 @@
 const overlay = document.getElementById("overlay");
-const chose_player = document.getElementById("chose_player");
-const cancer_button = document.getElementById("cancer_button");
-
-
-
-chose_player.addEventListener("click", function () {
-  overlay.classList.remove("hidden");
-  overlay.classList.add("flex");
-});
-
-cancer_button.addEventListener("click", function () {
-  overlay.classList.remove("flex");
-  overlay.classList.add("hidden");
-});
-
+const chosePlayer = document.getElementById("chose_player");
+const cancelBtn = document.getElementById("cancer_button");
+const addPlayer = document.getElementById("add_player");
+const addOverlay = document.getElementById("add_overlay");
+const cancelAddBtn = document.getElementById("cancer_add_button");
+const playersAreas = document.querySelectorAll(".player_area");
+const playersCards = document.getElementById("players_cards");
 
 const formData = {};
 const newData = [];
 
-document.getElementById('add_form').addEventListener('submit', function(event) {
-  event.preventDefault();
 
-  let valid = true;
-  let errorMessage = '';
-
-
-  const fields = [
-      { id: 'name', errorMessage: 'Name is required.' },
-      { id: 'position', errorMessage: 'Position is required.' },
-      { id: 'nationality', errorMessage: 'Nationality is required.' },
-      { id: 'club', errorMessage: 'Club is required.' },
-      { id: 'photo', errorMessage: 'Photo URL is required.' },
-      { id: 'logo', errorMessage: 'Logo URL is required.' }
-  ];
-
-  const numberFields = [
-      { id: 'rating', errorMessage: 'Rating must be between 0 and 100 Or empty.' },
-      { id: 'pace', errorMessage: 'Pace must be between 0 and 100 Or empty.' },
-      { id: 'shooting', errorMessage: 'Shooting must be between 0 and 100 Or empty.' },
-      { id: 'passing', errorMessage: 'Passing must be between 0 and 100 Or empty.' },
-      { id: 'dribbling', errorMessage: 'Dribbling must be between 0 and 100 Or empty.' },
-      { id: 'defending', errorMessage: 'Defending must be between 0 and 100 Or empty.' },
-      { id: 'physical', errorMessage: 'Physical must be between 0 and 100 Or empty.' }
-  ];
-
-
-  fields.forEach(field => {
-      const input = document.getElementById(field.id);
-      if (!input.value.trim()) { 
-          valid = false;
-          errorMessage += `${field.errorMessage}\n`; 
-          input.classList.add('border-[#991b1b]');
-      } else {
-          input.classList.remove('border-[#991b1b]');
-          formData[field.id] = input.value.trim();
-      }
-  });
-
-  
-  numberFields.forEach(field => {
-      const input = document.getElementById(field.id);
-      const value = parseFloat(input.value);
-      if (isNaN(value) || value < 0 || value > 100) {
-          valid = false;
-          errorMessage += `${field.errorMessage}\n`;
-          input.classList.add('border-[#991b1b]');
-      } else {
-          input.classList.remove('border-[#991b1b]');
-          formData[field.id] = value;
-      }
-  });
-
-  if (!valid) {
-      alert(errorMessage);
-      return;
-  }
-
-
-      newData.push(formData);
-      loadPlayersData(newData);
-
+chosePlayer.addEventListener("click", () => {
+  overlay.classList.remove("hidden");
+  overlay.classList.add("flex");
 });
 
 
+cancelBtn.addEventListener("click", () => {
+  overlay.classList.add("hidden");
+  overlay.classList.remove("flex");
+});
+
+
+addPlayer.addEventListener("click", () => {
+  addOverlay.classList.remove("hidden");
+  addOverlay.classList.add("flex");
+});
+
+
+cancelAddBtn.addEventListener("click", () => {
+  addOverlay.classList.add("hidden");
+  addOverlay.classList.remove("flex");
+});
+
+
+document.getElementById("add_form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  let isValid = true;
+  let errorMessage = "";
+
+  const requiredFields = [
+    { id: "name", message: "Name is required." },
+    { id: "position", message: "Position is required." },
+    { id: "nationality", message: "Nationality is required." },
+    { id: "club", message: "Club is required." },
+    { id: "photo", message: "Photo URL is required." },
+    { id: "logo", message: "Logo URL is required." },
+  ];
+
+  const numberFields = [
+    { id: "rating", message: "Rating must be between 0 and 100 or empty." },
+    { id: "pace", message: "Pace must be between 0 and 100 or empty." },
+    { id: "shooting", message: "Shooting must be between 0 and 100 or empty." },
+    { id: "passing", message: "Passing must be between 0 and 100 or empty." },
+    { id: "dribbling", message: "Dribbling must be between 0 and 100 or empty." },
+    { id: "defending", message: "Defending must be between 0 and 100 or empty." },
+    { id: "physical", message: "Physical must be between 0 and 100 or empty." },
+  ];
+
+
+  requiredFields.forEach((field) => {
+    const input = document.getElementById(field.id);
+    if (!input.value.trim()) {
+      isValid = false;
+      errorMessage += `${field.message}\n`;
+      input.classList.add("border-[#991b1b]");
+    } else {
+      input.classList.remove("border-[#991b1b]");
+      formData[field.id] = input.value.trim();
+    }
+  });
+
+
+  numberFields.forEach((field) => {
+    const input = document.getElementById(field.id);
+    const value = parseFloat(input.value);
+    if (isNaN(value) || value < 0 || value > 100) {
+      isValid = false;
+      errorMessage += `${field.message}\n`;
+      input.classList.add("border-[#991b1b]");
+    } else {
+      input.classList.remove("border-[#991b1b]");
+      formData[field.id] = value;
+    }
+  });
+
+  if (!isValid) {
+    alert(errorMessage);
+    return;
+  }
+
+  newData.push(formData);
+  loadPlayersData(newData);
+});
 
 
 const loadPlayersData = async (newData) => {
   try {
-
     let response = await fetch("../data/data.json");
     let players = await response.json();
-
     players = players.players;
-
 
     if (!localStorage.getItem("players")) {
       localStorage.setItem("players", JSON.stringify(players));
     }
 
     let allPlayers = JSON.parse(localStorage.getItem("players"));
-
-    
-    displayData(allPlayers, newData); 
-
-
-  } catch (err) {
-    console.error("Error loading data", err); 
+    displayData(allPlayers, newData);
+  } catch (error) {
+    console.error("Error loading data", error);
   }
 };
 
@@ -113,108 +117,67 @@ loadPlayersData(newData);
 
 
 
-const displayData = async (allPlayers, newData) => {
- 
-    
-  if (newData.length != null) {
-    for (let i = 0; i < newData.length; i++) {
-      allPlayers.push(newData[i]);
-    }
+const displayData = (allPlayers, newData) => {
+  if (newData.length) {
+    allPlayers = allPlayers.concat(newData);
   }
 
-
   const displayDataCard = allPlayers
-  .map((elements) => {
-
-      return `
-        <div
-          class="card relative w-[150px] h-[160px] bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
-          style="background-image: url('../assets/img/placeholder-card.webp')"
-        >
-          <!-- Card Top -->
-          <div class=" relative flex text-[#e9cc74] px-1">
-            <!-- Master Info -->
-            <div class="absolute flex flex-col text-center uppercase leading-5 font-light pt-2">
-              <div class="text-sm">${elements.rating}</div>
-              <div class="text-xs">RW</div>
-              <div class="block w-4 h-6">
-                <img
-                  src="${elements.logo}"
-                  alt="Logo"
-                  class="w-full h-full object-contain"
-                />
-              </div>
-            </div>
-            <div class="mx-auto w-[40px] h-[40px] overflow-hidden relative">
-              <img
-                src="${elements.photo}"
-                alt="Player"
-                class="w-full h-full object-contain relative -right-2"
-              />
+    .map((player) => `
+      <div
+        class="card relative w-[150px] h-[160px] bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
+        style="background-image: url('../assets/img/placeholder-card.webp')"
+      >
+        <div class="relative flex text-[#e9cc74] px-1">
+          <div class="absolute flex flex-col text-center uppercase leading-5 font-light pt-2">
+            <div class="text-sm">${player.rating}</div>
+            <div class="text-xs">RW</div>
+            <div class="block w-4 h-6">
+              <img src="${player.logo}" alt="Logo" class="w-full h-full object-contain" />
             </div>
           </div>
-          <!-- Card Bottom -->
-          <div class="relative">
-            <div class="block text-[#e9cc74] w-full mx-auto py-1 text-center">
-              <div class="text-xs uppercase border-b border-[rgba(233,204,116,0.1)] pb-0.5 overflow-hidden">
-                <span class="block text-shadow">${elements.name}</span>
+          <div class="mx-auto w-[40px] h-[40px] overflow-hidden relative">
+            <img src="${player.photo}" alt="Player" class="w-full h-full object-contain relative -right-2" />
+          </div>
+        </div>
+        <div class="relative">
+          <div class="block text-[#e9cc74] w-full mx-auto py-1 text-center">
+            <div class="text-xs uppercase border-b border-[rgba(233,204,116,0.1)] pb-0.5 overflow-hidden">
+              <span class="block text-shadow">${player.name}</span>
+            </div>
+            <div class="mt-1 flex justify-center space-x-2">
+              <div class="space-y-0.5 border-r border-[rgba(233,204,116,0.1)] pr-1">
+                <span class="flex text-[10px] uppercase"><span class="font-bold mr-0.5">${player.pace}</span> PAC</span>
+                <span class="flex text-[10px] uppercase"><span class="font-bold mr-0.5">${player.shooting}</span> SHO</span>
+                <span class="flex text-[10px] uppercase"><span class="font-bold mr-0.5">${player.passing}</span> PAS</span>
               </div>
-              <div class="mt-1 flex justify-center space-x-2">
-                <div class="space-y-0.5 border-r border-[rgba(233,204,116,0.1)] pr-1">
-                  <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.pace}</span> PAC
-                  </span>
-                  <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.shooting}</span> SHO
-                  </span>
-                  <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.passing}</span> PAS
-                  </span>
-                </div>
-                <div class="space-y-0.5">
-                  <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.dribbling}</span> DRI
-                  </span>
-                  <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.defending}</span> DEF
-                  </span>
-                  <span class="flex text-[10px] uppercase">
-                    <span class="font-bold mr-0.5">${elements.physical}</span> PHY
-                  </span>
-                </div>
+              <div class="space-y-0.5">
+                <span class="flex text-[10px] uppercase"><span class="font-bold mr-0.5">${player.dribbling}</span> DRI</span>
+                <span class="flex text-[10px] uppercase"><span class="font-bold mr-0.5">${player.defending}</span> DEF</span>
+                <span class="flex text-[10px] uppercase"><span class="font-bold mr-0.5">${player.physical}</span> PHY</span>
               </div>
             </div>
           </div>
-        </div>`;
-    })
-    .join(" ");
+        </div>
+      </div>`)
+    .join("");
 
-  players_cards.innerHTML = displayDataCard;
+  playersCards.innerHTML = displayDataCard;
+  
   const cards = document.querySelectorAll(".card");
-  select_player(cards);
+  selectPlayer(cards);
 };
 
 
-
-const players_areas = document.querySelectorAll(".player_area");
-
-const select_player = (cards) => {
+const selectPlayer = (cards) => {
   cards.forEach((card) => {
     card.addEventListener("click", () => {
-      players_areas.forEach((area) => {
+      overlay.classList.add("hidden");
+      alert("You have selected the player, now put him in his designated place.")
+      playersAreas.forEach((area) => {
         area.addEventListener("click", () => {
-
           const cardContent = card.querySelector(".player-content");
-          if (cardContent) {
-            area.innerHTML = "";
-            const wrapper = document.createElement("div");
-            wrapper.classList.add("player-wrapper"); 
-            wrapper.innerHTML = cardContent.outerHTML;
-            area.appendChild(wrapper);
-          } else {
-            area.innerHTML = card.outerHTML;
-          }
-
+          area.innerHTML = cardContent ? cardContent.outerHTML : card.outerHTML;
           overlay.classList.add("hidden");
           overlay.classList.remove("flex");
         });
@@ -223,20 +186,5 @@ const select_player = (cards) => {
   });
 };
 
-
-
-const add_player = document.getElementById("add_player");
-const add_overlay = document.getElementById("add_overlay");
-const cancer_add_button = document.getElementById("cancer_add_button");
-
-add_player.addEventListener("click", function () {
-  add_overlay.classList.add("flex");
-  add_overlay.classList.remove("hidden");
-});
-
-cancer_add_button.addEventListener("click", function () {
-  add_overlay.classList.add("hidden");
-  add_overlay.classList.remove("flex");
-});
 
 
