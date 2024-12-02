@@ -55,6 +55,7 @@ document.getElementById("add_form").addEventListener("submit", (event) => {
     } else {
       input.classList.remove("border-[#991b1b]");
       formData[field.id] = input.value.trim();
+
     }
   });
 
@@ -82,6 +83,9 @@ document.getElementById("add_form").addEventListener("submit", (event) => {
 });
 
 
+console.log(formData);
+
+
 const loadPlayersData = async (newData) => {
   try {
     let response = await fetch("/src/data/data.json");
@@ -103,6 +107,8 @@ loadPlayersData(newData);
 
 
 
+
+
 const displayData = (allPlayers, newData) => {
   if (newData.length) {
     allPlayers = allPlayers.concat(newData);
@@ -112,14 +118,14 @@ const displayData = (allPlayers, newData) => {
     .map((player) => `
       <div
         draggable="true"
-        data-position="${player.id}"
+        data-position="${player.position}"
         class="player relative w-[150px] h-[160px] bg-cover bg-center bg-no-repeat p-[1.2rem_0] z-2 transition ease-in duration-200"
         style="background-image: url('/src/assets/img/placeholder-card.webp')"
       >
         <div class="relative flex text-[#e9cc74] px-1">
           <div class="absolute flex flex-col text-center uppercase leading-5 font-light pt-2">
             <div class="text-sm">${player.rating}</div>
-            <div class="text-xs">RW</div>
+            <div class="text-xs">${player.position}</div>
             <div class="block w-4 h-6">
               <img src="${player.logo}" alt="Logo" class="w-full h-full object-contain" />
             </div>
@@ -174,6 +180,7 @@ const selectPlayer = (players) => {
       if (zonePosition === position) {
         const player = document.querySelector(`[data-position="${position}"]`);
         zone.appendChild(player);
+        console.log(zone.appendChild(player));
       } else {
         alert("This player doesn't belong here!");
       }

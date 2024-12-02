@@ -19,23 +19,23 @@
                <div class="z-40 px-6 md:px-[30px] row-[20px] grid absolute w-full h-full p-[20px] md:p-[40px]">
                   <div class="grid board-players z-40 gap-5 absolute w-full h-full">
                      <div class="flex flex-wrap w-full gap-5 md:gap-[90px] justify-center">
-                        <div data-zone="1" class="flex justify-center items-center zone max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
-                        <div data-zone="2" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
-                        <div data-zone="3" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="ST" class="flex justify-center items-center zone max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "><h1></h1></div>
+                        <div data-zone="CF" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="RW" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
                      </div>
                      <div class="flex flex-wrap w-full gap-5 md:gap-[90px] justify-center">
-                        <div data-zone="4" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
-                        <div data-zone="5" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
-                        <div data-zone="6" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="LW" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="AM" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="CM" class="flex justify-center items-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
                      </div>
                      <div class="flex flex-wrap w-full gap-5 md:gap-[90px] justify-center">
-                        <div data-zone="7" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
-                        <div data-zone="8" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
-                        <div data-zone="9" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
-                        <div data-zone="10" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="DM" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="RM" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="LM" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="RB" class="flex zone justify-center max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
                      </div>
                      <div class="flex w-full justify-center">
-                        <div data-zone="11" class="flex justify-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
+                        <div data-zone="LB" class="flex justify-center zone  max-md:w-[48px] max-md:h-[70px] w-[110px] h-[160px] "></div>
                      </div>
                   </div>
                </div>
@@ -67,9 +67,7 @@
                   <div id="players_cards" class="grid justify-center  grid-cols-3  gap-5">
                     <!-- Player cards will be dynamically inserted here -->
                   </div>
-
                 </div>
-                
                </div>
             </div>
         </div>
@@ -107,18 +105,17 @@
                            <input id="shooting" name="shooting" type="number" placeholder="enter shooting" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
                         </div>
                         <div class="flex flex-col gap-1" >
+                           <input id="defending" name="defending" type="number" placeholder=" enter defending" class="w-full rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
+                        </div>
+                        <div class="flex flex-col gap-1" >
                            <input id="passing" name="passing" type="number" placeholder="enter passing" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
                         </div>
                         <div class="flex flex-col gap-1" >
                            <input id="dribbling" name="dribbling" type="number" placeholder="enter dribbling" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
                         </div>
-                        <div class="flex flex-col gap-1" >
-                           <input id="defending" name="defending" type="number" placeholder="enter defending" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
-                        </div>
                      </div>
-
-                    
-                    <div class="flex flex-col gap-5 my-5">
+                     
+                     <div class="flex flex-col gap-5 my-5">
                         <div class="flex flex-col gap-1" >
                            <input id="physical" name="physical" type="number" placeholder="enter physical" class="rounded border border-[#4c4c4c] text-white  bg-black p-2 focus:ring-orange focus:border-orange">
                         </div>
@@ -129,8 +126,7 @@
                             <input id="logo" name="logo" type="text" placeholder="Enter logo URL" class="rounded border border-[#4c4c4c] text-white bg-black p-2 focus:ring-orange focus:border-orange">
                         </div>
                     </div>
-                    
-                    
+
                     <div class="flex justify-between gap-2">
                         <input type="submit" class="cursor-pointer py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700" value="Add Player">
                         <button id="cancer_add_button" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-orange text-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700">
