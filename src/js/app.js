@@ -4,11 +4,16 @@ const addOverlay = document.getElementById("add_overlay");
 const cancelAddBtn = document.getElementById("cancer_add_button");
 const playersCards = document.getElementById("players_cards");
 const zones = document.querySelectorAll(".zone");
+const number_jeour = document.getElementById("number_jeour");
 let allPlayers = []
 const formData = {};
 const newData = [];
 let requiredFields = [];
 let numberFields = [];
+
+
+
+
 
 
 addPlayer.addEventListener("click", () => {
@@ -95,6 +100,7 @@ const loadPlayersData = async (newData) => {
     let players = await response.json();
      allPlayers = players.players;
 
+
   
     displayData(allPlayers, newData);
   } catch (error) {
@@ -109,6 +115,9 @@ function deletePlayer(i){
   allPlayers.splice(i,1);
   displayData(allPlayers);
 }
+
+
+
 
 function getPlayer(i){
  
@@ -162,6 +171,7 @@ const displayData = (allPlayers, newData) => {
 
   if (newData?.length) {
     allPlayers = allPlayers.concat(newData);
+    number_jeour.innerHTML = allPlayers.length;
   }
  
  
@@ -234,28 +244,29 @@ const displayData = (allPlayers, newData) => {
 
 
 const selectPlayer = (players) => {
-     players.forEach(player => {
-      player.addEventListener("dragstart", function(event){
-        const position = player.getAttribute("data-position")
-        event.dataTransfer.setData("text/plain", position);
-      })
-     })
 
-     zones.forEach(zone => {
-      zone.addEventListener("dragover", function(event){
-        event.preventDefault();
-      })
+  players.forEach(player => {
+   player.addEventListener("dragstart", function(event){
+     const position = player.getAttribute("data-position")
+     event.dataTransfer.setData("text/plain", position);
+   })
+  })
 
-      zone.addEventListener("drop", function(event){
-        const position = event.dataTransfer.getData("text/plain");
-        const zonePosition = zone.getAttribute("data-zone");
+  zones.forEach(zone => {
+   zone.addEventListener("dragover", function(event){
+     event.preventDefault();
+   })
 
-        if (zonePosition === position) {
-          const player = document.querySelector(`[data-position = "${position}"]`)
-          zone.appendChild(player);
-        }else{
-          alert("This player doesn't belong here!");
-        }
-      })
-     })
+   zone.addEventListener("drop", function(event){
+     const position = event.dataTransfer.getData("text/plain");
+     const zonePosition = zone.getAttribute("data-zone");
+     if (zonePosition === position) {
+       const player = document.querySelector(`[data-position = "${position}"]`)
+       zone.appendChild(player);
+     }else{
+       alert("This player doesn't belong here!");
+     }
+   })
+
+  })
 }
